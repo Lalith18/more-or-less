@@ -1,0 +1,16 @@
+.background {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpapershome.com/images/pages/pic_h/18845.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.contents {
+    padding-top: 15%;
+}
+
+.title {
+    font-size: 6rem;
+}
+
