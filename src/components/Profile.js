@@ -15,11 +15,11 @@ const Profile = ({ name, followers, photo, showAns, checkMore, checkLess }) => {
 
 const displayAns = (showAns, followers, checkMore, checkLess) => {
   if (showAns === "show") {
-    return <h3 className='followers'>{followers}</h3>;
+    return <h3 className='followers'>{followers.toLocaleString()}</h3>;
   } else if (showAns === "animate") {
     return (
       <h3 className='followers'>
-        <Countup end={followers} duration={1.5} />
+        <Countup end={followers} duration={1.5} separator={','} />
       </h3>
     );
   } else {

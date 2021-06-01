@@ -1,34 +1,66 @@
 .indicator {
     border-radius: 50%;
     position: absolute;
-    width: 14vh;
-    height: 14vh;
+    width: 10vw;
+    height: 10vw;
     top: 50%;
     left: 50%;
-    margin: -7vh 0 0 -7vh;
+    margin: -5vw 0 0 -5vw;
 }
 
 .wait {
     background-color: white;
-    animation: fadeIn 2s;
-}
+    animation: scaleIn 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .vs {
+    font-size: 3vw;
+  }
+
 
 .green-indicator {
     background-color: green;
-    animation: fadeOut 1s;
-    animation-delay: 1.5s;
+    animation: toGreen 1s, scaleOut 1s 1.5s;
+}
+
+img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
 }
 
 .red-indicator {
     background-color: red;
+    animation: toRed 1s;
 }
 
-  @keyframes fadeOut {
+  @keyframes scaleOut {
     0% {transform: scale(1);}
     100% {transform: scale(0);}
   }
 
-  @keyframes fadeIn {
+  @keyframes scaleIn {
     0% {transform: scale(0);}
+    15% {transform: scale(0);}
     100% {transform: scale(1);}
+  }
+
+  @keyframes disappear {
+    0% {transform: scale(0);}
+    100% {transform: scale(0);}
+  }
+
+  @keyframes toGreen {
+    from {background-color: white;}
+    to {background-color: green;}
+  }
+
+  @keyframes toRed {
+    from {background-color: white;}
+    to {background-color: red;}
   }

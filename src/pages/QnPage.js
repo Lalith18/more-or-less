@@ -1,35 +1,43 @@
 import React from 'react';
 import './QnPage.css';
-import Profiles from './Data/Profiles';
-import Carousel from './components/Carousel.js';
-import Indicator from './components/Indicator';
+import Profiles from '../Data/Profiles';
+import Carousel from '../components/Carousel.js';
+import Indicator from '../components/Indicator';
 
 class QnPage extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+    let randNum = this.getRandNum()
     this.state = {
       x: 0,
       score: 0,
       crct: true,
       status: 'wait',
-      done: this.props.randNum,
-      profiles: [
-        this.getInitialProfile(0, 'show'),
-        this.getInitialProfile(1, 'dont'),
-        this.getInitialProfile(2, 'dont'),
-      ]
+      done: randNum,
+      profiles: randNum.map((num, index) => {
+        let showAns = index === 0 ? 'show': 'dont'
+        let profile = Profiles[num]
+        profile.showAns = showAns
+        return profile
+      })
     }
   }
 
-  getInitialProfile = (num, showAns) => {
-    let profile = Profiles[this.props.randNum[num]]
-    profile.showAns = showAns
-    return profile
+  getRandNum = () => {
+    let initialThree = []
+    
+    while (initialThree.length !== 3) {
+      let num = Math.floor(Math.random() * 10) 
+      if (!initialThree.includes(num)) {
+        initialThree.push(num)
+      }
+    }
+    return initialThree
   }
 
   getProfile = (showAns) => {
     let num = Math.floor(Math.random() * 10) 
-    let done = this.props.randNum
+    let done = this.state.done
     if (done.length === 10) {
       this.props.changePage(1)
     }else {
@@ -107,7 +115,9 @@ class QnPage extends React.Component {
   };
 
   render() {
-    const {profiles, x, status} = this.state
+    const {profiles, x, status, done} = this.state
+    console.log(profiles);
+    console.log(done);
     return(
       <div className='QnPage'>
         <Carousel profiles={profiles} x={x} checkMore={this.checkMore} checkLess={this.checkLess} />
