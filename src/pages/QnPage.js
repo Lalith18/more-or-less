@@ -1,16 +1,18 @@
 import React from 'react';
 import './QnPage.css';
 import Profiles from '../Data/Profiles';
-import Carousel from '../components/Carousel.js';
+import Carousel from '../components/Carousel';
 import Indicator from '../components/Indicator';
+import Scores from '../components/Scores';
 
 class QnPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     let randNum = this.getRandNum()
     this.state = {
       x: 0,
       score: 0,
+      highscore: props.highscore,
       crct: true,
       status: 'wait',
       done: randNum,
@@ -39,7 +41,7 @@ class QnPage extends React.Component {
     let num = Math.floor(Math.random() * 10) 
     let done = this.state.done
     if (done.length === 10) {
-      this.props.changePage(1)
+      this.props.changePage(3)
     }else {
       if(done.includes(num)) {
         return this.getProfile(showAns)
@@ -65,7 +67,7 @@ class QnPage extends React.Component {
     this.setState({
       profiles: profiles
     });
-
+    await this.timeout(1500);
     if (profiles[score + 1].followers >= profiles[score].followers) {
       this.setState({
         status: 'correct'
@@ -81,8 +83,9 @@ class QnPage extends React.Component {
       this.setState({
         status: 'wrong'
       });
+      this.props.setHighScore(score);
       await this.timeout(2000);
-      this.props.changePage(1);
+      this.props.changePage(3);
     }
   };
 
@@ -93,7 +96,7 @@ class QnPage extends React.Component {
     this.setState({
       profiles: profiles
     });
-
+    await this.timeout(1500);
     if (profiles[score + 1].followers <= profiles[score].followers) {
       this.setState({
         status: 'correct'
@@ -109,19 +112,22 @@ class QnPage extends React.Component {
       this.setState({
         status: 'wrong'
       });
+      this.props.setHighScore(score);
       await this.timeout(2000);
-      this.props.changePage(1);
+      this.props.changePage(3);
     }
   };
 
   render() {
-    const {profiles, x, status, done} = this.state
+    const {profiles, x, status, done, score, highscore} = this.state
     console.log(profiles);
     console.log(done);
     return(
       <div className='QnPage'>
         <Carousel profiles={profiles} x={x} checkMore={this.checkMore} checkLess={this.checkLess} />
         <Indicator status={status} />
+        <Scores type='Highscore' value={highscore} />
+        <Scores type='Score' value={score} />
       </div>
     )
   }

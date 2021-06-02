@@ -3,3 +3,17 @@
   height: 100%;
   width: 100%;
 }
+
+.my-button {
+  padding: 1% 2%;
+  border-radius: 20px;
+  border:white 4px solid;
+  background: transparent;
+  color: white;
+  font-size: 2rem;
+}
+
+.my-button:hover {
+  background: white;
+  color: black;
+}

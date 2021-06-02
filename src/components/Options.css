@@ -4,5 +4,12 @@
 }
 
 .options-button {
-    margin: 2% 25% 0;
+    margin: 2vh 30% 0;
+    width: 30%;
+}
+
+.options-text {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
 }

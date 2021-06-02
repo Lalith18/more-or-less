@@ -1,0 +1,17 @@
+.Highscore {
+    position: absolute;
+    left: 2vh;
+    bottom: 2vh;
+}
+
+.Score {
+    position: absolute;
+    right: 2vh;
+    bottom: 2vh;
+}
+
+.score-font {
+    margin: 0;
+    font-size: 2rem;
+    color:white;
+}

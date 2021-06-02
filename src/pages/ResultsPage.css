@@ -1,0 +1,51 @@
+.result-background {
+    height: 100%;
+    width: 100%;
+    padding-top: 25vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://media.istockphoto.com/videos/closeup-face-of-cute-pug-puppy-dog-sleeping-rest-open-eye-by-chin-and-video-id1167585049?s=640x640');
+    background-position: center;
+    background-size: cover;
+}
+.result-title {
+    font-size: 3rem;
+    color: white;
+    margin: 0;
+}
+
+.score {
+    font-size: 4rem;
+    color: white;
+    margin: 0;
+    margin-bottom: 2vh;
+
+}
+
+.highscore-title {
+    font-size: 1.6rem;
+    color: white;
+    margin: 0;
+    margin-bottom: 15vh;
+}
+
+.footer {
+    position: absolute;
+    bottom: 2vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.role {
+    font-size: 1.6rem;
+    color: white;
+    margin: 0;
+}
+
+.name {
+    font-size: 1.4rem;
+    color: white;
+    margin: 0;
+}
+

@@ -4,13 +4,21 @@
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpapershome.com/images/pages/pic_h/18845.jpg');
     background-position: center;
     background-size: cover;
-}
-
-.contents {
-    padding-top: 15%;
+    padding-top: 40vh;
 }
 
 .title {
     font-size: 6rem;
+    margin: 0;
+    background-image: linear-gradient( 90deg,yellow, yellow, yellow, red, rgb(252, 4, 240), rgb(81, 0, 128), purple, purple);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    margin: 0;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: white;
 }
 

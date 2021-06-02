@@ -1,6 +1,6 @@
 import './Indicator.css';
 import Crct from './check-mark.png';
-import Wrong from './x-mark.png';
+import Wrong from './wrong-mark.png';
 
 const Indicator = ({status}) => {
     if (status === 'correct') {
