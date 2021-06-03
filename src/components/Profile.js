@@ -6,7 +6,7 @@ const Profile = ({ name, followers, photo, showAns, checkMore, checkLess }) => {
   return (
     <div className="image" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${photo})` }}>
       <div className="details">
-        <h2 className="name">{name}</h2>
+        <h2 className="profile-name">{name}</h2>
         {displayAns(showAns, followers, checkMore, checkLess)}
       </div>
     </div>

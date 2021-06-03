@@ -12,14 +12,38 @@
     top: 60%;
   }
   
-  .name {
+  .profile-name {
     margin: 0;
-    font-size: 4rem;
+    font-size: 4.2vw;
     color:white;
   }
   
   .followers {
     margin: 0;
-    font-size: 3rem;
+    font-size: 3.5vw;
     color:white;
+  }
+
+  @media (max-width: 650px) {
+    .image {
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+      background-position: center;
+      background-size: cover;
+    }
+
+    .details {
+      position: relative;
+      text-align: center;
+      top: 50%;
+    }
+
+    .profile-name {
+      font-size: 6.5vw;
+      margin-bottom: 1.5vh;
+    }
+    
+    .followers {
+      font-size: 5.5vw;
+    }
   }

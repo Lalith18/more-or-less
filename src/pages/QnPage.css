@@ -4,15 +4,5 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-}
-
-.circular-view {
-    border-radius: 50%;
-    background-color: green;
-    position: absolute;
-    width: 14vh;
-    height: 14vh;
-    top: 50%;
-    left: 50%;
-    margin: -7vh 0 0 -7vh;
+    background-color: black;
 }

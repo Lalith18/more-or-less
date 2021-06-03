@@ -1,3 +1,7 @@
+body {
+  font-family: 'Varela Round';
+}
+
 .App {
   text-align: center;
   height: 100%;
@@ -16,4 +20,40 @@
 .my-button:hover {
   background: white;
   color: black;
+}
+
+.social-button {
+  border-radius: 8px;
+  border: none;
+  font-size: 1.5rem;
+  margin: 2px;
+}
+
+.options-button {
+  margin: 2vh 30% 0;
+  width: 30%;
+}
+
+@media (max-width: 650px) {
+  .my-button {
+    padding: 1% 4%;
+    border-radius: 20px;
+    border:white 2px solid;
+    background: transparent;
+    color: white;
+    font-size: 2rem;
+  }
+  
+  .social-button {
+    border-radius: 5px;
+    padding: 1px 2px 0;
+    border: none;
+    font-size: 1rem;
+    margin: 1px;
+  }
+
+  .options-button {
+    margin: 0 30% 1vh;
+    width: 30%;
+  }
 }

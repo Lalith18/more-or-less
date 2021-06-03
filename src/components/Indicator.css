@@ -1,11 +1,11 @@
 .indicator {
     border-radius: 50%;
     position: absolute;
-    width: 10vw;
-    height: 10vw;
+    width: 8vw;
+    height: 8vw;
     top: 50%;
     left: 50%;
-    margin: -5vw 0 0 -5vw;
+    margin: -4vw 0 0 -4vw;
 }
 
 .wait {
@@ -27,10 +27,10 @@
 
 img {
   position: absolute;
-  top: 20%;
-  left: 20%;
-  width: 60%;
-  height: 60%;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
 }
 
 .red-indicator {
@@ -38,23 +38,39 @@ img {
     animation: toRed 1s;
 }
 
-  @keyframes scaleOut {
+@keyframes scaleOut {
     0% {transform: scale(1);}
     100% {transform: scale(0);}
-  }
+}
 
-  @keyframes scaleIn {
+@keyframes scaleIn {
     0% {transform: scale(0);}
     15% {transform: scale(0);}
     100% {transform: scale(1);}
-  }
+}
 
-  @keyframes toGreen {
+@keyframes toGreen {
     from {background-color: white;}
     to {background-color: green;}
-  }
+}
 
-  @keyframes toRed {
+@keyframes toRed {
     from {background-color: white;}
     to {background-color: red;}
-  }
+}
+
+@media (max-width: 750px) {
+    .indicator {
+      border-radius: 50%;
+      position: absolute;
+      width: 18vw;
+      height: 18vw;
+      top: 50%;
+      left: 50%;
+      margin: -9vw 0 0 -9vw;
+    }
+
+    .vs {
+      font-size: 5vw;
+    }
+}

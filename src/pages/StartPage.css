@@ -22,3 +22,18 @@
     color: white;
 }
 
+@media (max-width: 650px) {
+    .background {
+        padding-top: 10vh;
+    }
+    
+    .title {
+        font-size: 15vw;
+    }
+    
+    .subtitle {
+        font-size: 8vw;
+        margin-bottom: 50vh;
+    }
+}
+

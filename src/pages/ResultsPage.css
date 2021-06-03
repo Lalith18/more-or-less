@@ -49,3 +49,13 @@
     margin: 0;
 }
 
+@media (max-width: 650px) {
+    .role {
+        font-size: 4vw;
+    }
+    
+    .name {
+        font-size: 4vw;
+    }
+}
+
