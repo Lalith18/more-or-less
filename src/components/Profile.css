@@ -9,7 +9,7 @@
   .details {
     position: relative;
     text-align: center;
-    top: 60%;
+    top: 55%;
   }
   
   .profile-name {
@@ -39,11 +39,11 @@
     }
 
     .profile-name {
-      font-size: 6.5vw;
-      margin-bottom: 1.5vh;
+      font-size: 7.5vw;
     }
     
     .followers {
-      font-size: 5.5vw;
+      font-size: 6.5vw;
+      margin-top: 1vw;
     }
   }

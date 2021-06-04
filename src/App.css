@@ -30,7 +30,7 @@ body {
 }
 
 .options-button {
-  margin: 2vh 30% 0;
+  margin: 1vh 30% 1vh;
   width: 30%;
 }
 
@@ -48,12 +48,13 @@ body {
     border-radius: 5px;
     padding: 1px 2px 0;
     border: none;
-    font-size: 1rem;
-    margin: 1px;
+    font-size: 1.2rem;
+    margin: 1px 2px;
   }
 
   .options-button {
-    margin: 0 30% 1vh;
-    width: 30%;
+    margin: 0.5vh 30% 0.5vh;
+    width: 35%;
+    padding: 0.7vh 0;
   }
 }

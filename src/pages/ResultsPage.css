@@ -49,13 +49,57 @@
     margin: 0;
 }
 
+.developer {
+    text-align: start;
+}
+
+.designer {
+    text-align: end;
+}
+
+.p0 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://www.samaa.tv/wp-content/uploads/2019/06/Sarim-Akhtar.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.p1 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://i.kym-cdn.com/entries/icons/original/000/027/424/joke.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.p2 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhdlhpXPcNp5E65SyiR7BT7TTYc-eevQ0E1Q&usqp=CAU');
+    background-position: center;
+    background-size: cover;
+}
+
+.p3 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://pbs.twimg.com/media/EpWNFFmUwAE7oIj.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.p4 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://i.insider.com/552d7b44eab8ea7b47ceda59?width=1000&format=jpeg&auto=webp');
+    background-position: center;
+    background-size: cover;
+}
+
+.p5 {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('https://cdn.pocket-lint.com/r/s/320x/assets/images/140427-apps-news-the-best-stupidest-and-most-famous-internet-memes-around-image23-dqx3y9qmye.jpg?v1');
+    background-position: center;
+    background-size: cover;
+}
+
 @media (max-width: 650px) {
     .role {
         font-size: 4vw;
     }
     
     .name {
-        font-size: 4vw;
+        font-size: 4.5vw;
     }
 }
 

@@ -15,6 +15,7 @@ const Carousel = ({profiles, x, checkMore, checkLess}) => {
               >
                 <Profile
                   name={profile.name}
+                  prevName= {index !== 0? profiles[index-1].name : 'something'}
                   followers={profile.followers}
                   photo={profile.photo}
                   showAns={profile.showAns}

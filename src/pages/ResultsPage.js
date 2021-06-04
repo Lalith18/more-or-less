@@ -5,8 +5,14 @@ import { faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
 const ResultsPage = ({changePage, score, highscore}) => {
+    let num = Math.floor(Math.random() * 2)
+    if ( score === highscore && score > 3) {
+        num = 4 + num
+    } else if (score > 3) {
+        num = 2 + num
+    }
     return (
-        <div className = 'result-background'>
+        <div className = {`result-background p${num}`} >
                 <h1 className='result-title'>You scored: </h1>
                 <h1 className='score'>{score}</h1>
                 <h1 className='highscore-title'>Your HighScore: {highscore}</h1>

@@ -1,7 +1,7 @@
 .background {
     height: 100%;
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpapershome.com/images/pages/pic_h/18845.jpg');
+    background: linear-gradient( 45deg, rgba(255,196,66,0.9), rgb(255,123,0,0.8), rgb(254,85,26,0.8), rgb(250,53,144,0.8), rgb(168,43,193,0.9)), url('https://api.time.com/wp-content/uploads/2019/04/instagram-story-tips-tricks.jpg?quality=85&w=1024&h=628&crop=1');
     background-position: center;
     background-size: cover;
     padding-top: 40vh;
@@ -10,9 +10,7 @@
 .title {
     font-size: 6rem;
     margin: 0;
-    background-image: linear-gradient( 90deg,yellow, yellow, yellow, red, rgb(252, 4, 240), rgb(81, 0, 128), purple, purple);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
 }
 
 .subtitle {

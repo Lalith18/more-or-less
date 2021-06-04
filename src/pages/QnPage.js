@@ -119,15 +119,13 @@ class QnPage extends React.Component {
   };
 
   render() {
-    const {profiles, x, status, done, score, highscore} = this.state
-    console.log(profiles);
-    console.log(done);
+    const {profiles, x, status, score, highscore} = this.state
     return(
       <div className='QnPage'>
         <Carousel profiles={profiles} x={x} checkMore={this.checkMore} checkLess={this.checkLess} />
-        <Indicator status={status} />
         <Scores type='Highscore' value={highscore} />
         <Scores type='Score' value={score} />
+        <Indicator status={status} />
       </div>
     )
   }
