@@ -34,6 +34,18 @@ body {
   width: 30%;
 }
 
+.secondary {
+  font-size: 1.5vw;
+  margin: 4vh 1vh 0;
+}
+
+.leaderboard-button {
+  width: 14%;
+  margin: 4vh 43% 0;
+  font-size: 1.5vw;
+  padding: 1vh;
+}
+
 @media (max-width: 650px) {
   .my-button {
     padding: 1% 4%;
@@ -56,5 +68,20 @@ body {
     margin: 0.5vh 30% 0.5vh;
     width: 35%;
     padding: 0.7vh 0;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+
+  .secondary {
+    margin: 10px 4px 0;
+    font-size: 1.2rem;
+  }
+
+  .leaderboard-button {
+    width: 50%;
+    margin: 10px 25% 0;
+    font-size: 1.2rem;
   }
 }

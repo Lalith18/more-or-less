@@ -1,0 +1,39 @@
+.input-group {
+    padding: 10px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.name-input {
+    background-color: transparent;
+    font-size: 2rem;
+    margin: 4px;
+    border: none;
+    color: white;
+    border: white 4px solid;
+}
+
+input::placeholder {
+    color: white;
+}
+
+input:focus {
+    outline: none;
+    border: none;
+    border-bottom: white 4px solid;
+  }
+
+@media (max-width: 650px) {
+    .name-input {
+        font-size: 1rem;
+        border: white 2px solid;
+        width: 40vw;
+        margin: 4px 4px 0;
+    }
+
+    input:focus {
+        border-bottom: white 2px solid;
+    }
+}

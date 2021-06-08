@@ -7,6 +7,16 @@
     padding-top: 40vh;
 }
 
+.header {
+    position: absolute;
+    top: 1vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .title {
     font-size: 6rem;
     margin: 0;
