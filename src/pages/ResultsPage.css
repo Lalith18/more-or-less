@@ -108,5 +108,9 @@
     .footer {
         display: none;
     }
+
+    .highscore-title {
+        margin-bottom: 3vh;
+    }
 }
 

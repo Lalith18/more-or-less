@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/storage'
 
 var config = {
     apiKey: "AIzaSyB894aWQmBKiSW6Ny8EbJIgqoi73y8PGuA",
@@ -35,5 +36,7 @@ export const updateLeaderboard = async (username, score) => {
 firebase.initializeApp(config);
 
 export const firestore = firebase.firestore()
+
+export const storage = firebase.storage()
 
 export default firebase;

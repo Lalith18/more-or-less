@@ -37,3 +37,9 @@ input:focus {
         border-bottom: white 2px solid;
     }
 }
+
+@media (max-height: 400px) {
+    .input-group {
+        padding: 0;
+    }
+}

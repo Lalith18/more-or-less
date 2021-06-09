@@ -40,13 +40,23 @@
 
 @media (max-width: 650px) {
     .close-button {
-        height: 4vh;
-        width: 4vh;
+        position: absolute;
+        top: 78vh;
+        left: 40vw;
+        height: 20vw;
+        width: 20vw;
+        background-color: rgba(255, 255, 255, 0.2);
     }
     
     .close-button:hover {
-        height: 6vh;
-        width: 6vh;
+        height: 22vw;
+        width: 22vw;
+        left: 39vw;
+        top: 77vh;
+    }
+
+    .leaderboard {
+        height: 76vh;
     }
 
     .leaderboard-title {
