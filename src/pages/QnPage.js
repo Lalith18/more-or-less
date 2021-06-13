@@ -5,23 +5,43 @@ import Carousel from '../components/Carousel';
 import Indicator from '../components/Indicator';
 import Scores from '../components/Scores';
 
+import {firestore} from '../firebase/firebase.utils'
+
+import { connect } from 'react-redux';
+import { changePage, changeScore, changeHighscore} from '../redux/details/details.actions';
+
 class QnPage extends React.Component {
   constructor(props) {
     super(props);
     let randNum = this.getRandNum()
     this.state = {
       x: 0,
-      score: 0,
-      highscore: props.highscore,
       crct: true,
       status: 'wait',
       done: randNum,
       profiles: randNum.map((num, index) => {
         let showAns = index === 0 ? 'show': 'dont'
         let profile = Profiles[num]
+        this.getFirebase(num)
         profile.showAns = showAns
         return profile
       })
+    }
+  }
+
+  getFirebase = async (num) => {
+    try {
+      let ig = {}
+      await firestore.collection('ig').doc(num.toString()).get().then((doc) => {
+        if (doc.exists) {
+            ig = doc.data()
+            // console.log(ig);
+        } else {
+            // console.log("No such document!");
+          }
+      })
+    } catch (error) {
+      console.log(error.mesage);
     }
   }
 
@@ -51,6 +71,7 @@ class QnPage extends React.Component {
         done: done
       })
       let profile = Profiles[num]
+      this.getFirebase(num)
       profile.showAns = showAns
       return profile
     }
@@ -62,7 +83,8 @@ class QnPage extends React.Component {
 
   checkMore = async () => {
     let newProfile = this.getProfile('dont')
-    let { profiles, score } = this.state;
+    let { profiles } = this.state;
+    const {score, changePage, changeScore, changeHighscore} = this.props
     profiles[score + 1].showAns = "animate";
     this.setState({
       profiles: profiles
@@ -79,19 +101,21 @@ class QnPage extends React.Component {
         profiles: [...prevState.profiles, newProfile],
         status: 'wait'
       }));
+      changeScore()
     } else {
       this.setState({
         status: 'wrong'
       });
-      this.props.setHighScore(score);
+      changeHighscore()
       await this.timeout(2000);
-      this.props.changePage(3);
+      changePage(3)
     }
   };
 
   checkLess = async () => {
     let newProfile = this.getProfile('dont')
-    let { profiles, score } = this.state;
+    let { profiles } = this.state;
+    const {score, changePage, changeScore, changeHighscore} = this.props
     profiles[score + 1].showAns = "animate";
     this.setState({
       profiles: profiles
@@ -104,22 +128,23 @@ class QnPage extends React.Component {
       await this.timeout(2000);
       this.setState((prevState) => ({
         x: prevState.x - 100,
-        score: prevState.score + 1,
         profiles: [...prevState.profiles, newProfile],
         status: 'wait'
       }));
+      changeScore()
     } else {
       this.setState({
         status: 'wrong'
       });
-      this.props.setHighScore(score);
+      changeHighscore();
       await this.timeout(2000);
-      this.props.changePage(3);
+      changePage(3);
     }
   };
 
   render() {
-    const {profiles, x, status, score, highscore} = this.state
+    const {profiles, x, status} = this.state
+    const {score, highscore} = this.props
     return(
       <div className='QnPage'>
         <Carousel profiles={profiles} x={x} checkMore={this.checkMore} checkLess={this.checkLess} />
@@ -131,4 +156,15 @@ class QnPage extends React.Component {
   }
 }
 
-export default QnPage;
+const mapStateToProps = state => ({
+  score: state.details.score,
+  highscore: state.details.highscore
+})
+
+const mapDispatchToProps = dispatch => ({
+  changePage: page => dispatch(changePage(page)),
+  changeScore: () => dispatch(changeScore()),
+  changeHighscore: () => dispatch(changeHighscore())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(QnPage);

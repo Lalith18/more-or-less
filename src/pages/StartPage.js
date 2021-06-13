@@ -1,6 +1,9 @@
 import React from 'react';
 import './StartPage.css';
 
+import { connect } from 'react-redux';
+import { changePage } from '../redux/details/details.actions';
+
 const StartPage = ({changePage}) => {
     return (
         <div className = 'background'>
@@ -14,5 +17,9 @@ const StartPage = ({changePage}) => {
     )
 }
 
-export default StartPage;
+const mapDispatchToProps = dispatch => ({
+    changePage: page => dispatch(changePage(page))
+})
+
+export default connect(null, mapDispatchToProps)(StartPage);
 
