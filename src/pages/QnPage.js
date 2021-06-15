@@ -21,8 +21,8 @@ class QnPage extends React.Component {
       done: randNum,
       profiles: randNum.map((num, index) => {
         let showAns = index === 0 ? 'show': 'dont'
-        let profile = Profiles[num]
-        this.getFirebase(num)
+        //let profile = Profiles[num]
+        let profile = this.getFirebase(num)
         profile.showAns = showAns
         return profile
       })
@@ -34,10 +34,10 @@ class QnPage extends React.Component {
       let ig = {}
       await firestore.collection('ig').doc(num.toString()).get().then((doc) => {
         if (doc.exists) {
-            ig = doc.data()
-            // console.log(ig);
+            return doc.data()
+            
         } else {
-            // console.log("No such document!");
+            console.log("No such document!");
           }
       })
     } catch (error) {
