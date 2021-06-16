@@ -1,3 +1,4 @@
+
 import QuestionsActionTypes from "./questions.types"
 import { addNewProfile, getInitialProfiles } from "./questions.utils"
 
@@ -13,10 +14,12 @@ const questionsReducer = (state=INITIAL_STATE, action) => {
 
         case QuestionsActionTypes.GET_PROFILE:
             return addNewProfile(state)
-        
+  
         default:
             return state
     }
 }
 
+
 export default questionsReducer;
+

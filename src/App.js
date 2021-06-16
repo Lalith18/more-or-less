@@ -35,37 +35,25 @@ class App extends React.Component {
       return <ResultsPage changePage={this.changePage} score={score} />
     }
 
-  }
-
-  setHighScore = (score) => {
-    this.setState({
-      score: score
-    })
-    if (score > this.state.highscore) {
-      this.setState({
-        highscore: score
-      })
-    }
-  }
-  
-  render() {
-    const {page, score, highscore} = this.state;
+const App = () => { 
+    const {page} = this.props;
     return (
       <div className="App">
       { page === 1 
-        ?<StartPage changePage={this.changePage}/>
-        : page ===2 ? <QnPage changePage={this.changePage} highscore={highscore} setHighScore={this.setHighScore}/>
-                    : <ResultsPage changePage={this.changePage} score={score} highscore={highscore}/>
+        ?<StartPage />
+        : page ===2 ? <QnPage />
+                    : <ResultsPage />
       }
       </div>
     );
   }
-}
+
 
 const mapDispatchToProps = dispatch => ({
   initialiseProfiles: () => dispatch(initialiseProfiles())
 })
 
 export default connect(null, mapDispatchToProps)(App);
+
 
       

@@ -16,17 +16,32 @@ class QnPage extends React.Component {
     let randNum = this.getRandNum()
     this.state = {
       x: 0,
-      score: 0,
-      highscore: props.highscore,
       crct: true,
       status: 'wait',
       done: randNum,
       profiles: randNum.map((num, index) => {
         let showAns = index === 0 ? 'show': 'dont'
-        let profile = Profiles[num]
+        //let profile = Profiles[num]
+        let profile = this.getFirebase(num)
         profile.showAns = showAns
         return profile
       })
+    }
+  }
+
+  getFirebase = async (num) => {
+    try {
+      let ig = {}
+      await firestore.collection('ig').doc(num.toString()).get().then((doc) => {
+        if (doc.exists) {
+            return doc.data()
+            
+        } else {
+            console.log("No such document!");
+          }
+      })
+    } catch (error) {
+      console.log(error.mesage);
     }
   }
 
@@ -80,11 +95,12 @@ class QnPage extends React.Component {
         score: prevState.score + 1,
         status: 'wait'
       }));
+      changeScore()
     } else {
       this.setState({
         status: 'wrong'
       });
-      this.props.setHighScore(score);
+      changeHighscore()
       await this.timeout(2000);
       this.props.changePage(3);
       this.props.initialiseProfiles()
@@ -105,11 +121,12 @@ class QnPage extends React.Component {
         score: prevState.score + 1,
         status: 'wait'
       }));
+      changeScore()
     } else {
       this.setState({
         status: 'wrong'
       });
-      this.props.setHighScore(score);
+      changeHighscore();
       await this.timeout(2000);
       this.props.changePage(3);
       this.props.initialiseProfiles()
