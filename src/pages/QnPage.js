@@ -5,6 +5,11 @@ import Carousel from '../components/Carousel';
 import Indicator from '../components/Indicator';
 import Scores from '../components/Scores';
 
+import { connect} from 'react-redux'
+import { getProfileFromFirebase, initialiseProfiles} from '../redux/questions/questions.actions'
+import { createStructuredSelector } from 'reselect';
+import { selectProfiles } from '../redux/questions/questions.selectors'
+
 class QnPage extends React.Component {
   constructor(props) {
     super(props);
@@ -37,21 +42,22 @@ class QnPage extends React.Component {
     return initialThree
   }
 
-  getProfile = (showAns) => {
+  getProfile = () => {
+    this.props.getProfileFromFirebase()
     let num = Math.floor(Math.random() * 10) 
     let done = this.state.done
     if (done.length === 10) {
       this.props.changePage(3)
     }else {
       if(done.includes(num)) {
-        return this.getProfile(showAns)
+        return this.getProfile()
       }
       done.push(num)
       this.setState({
         done: done
       })
       let profile = Profiles[num]
-      profile.showAns = showAns
+      profile.showAns = 'dont'
       return profile
     }
   }
@@ -61,13 +67,9 @@ class QnPage extends React.Component {
   };
 
   checkMore = async () => {
-    let newProfile = this.getProfile('dont')
-    let { profiles, score } = this.state;
-    profiles[score + 1].showAns = "animate";
-    this.setState({
-      profiles: profiles
-    });
-    await this.timeout(1500);
+    let { score } = this.state;
+    const {profiles, getProfileFromFirebase} = this.props;
+    getProfileFromFirebase()
     if (profiles[score + 1].followers >= profiles[score].followers) {
       this.setState({
         status: 'correct'
@@ -76,7 +78,6 @@ class QnPage extends React.Component {
       this.setState((prevState) => ({
         x: prevState.x - 100,
         score: prevState.score + 1,
-        profiles: [...prevState.profiles, newProfile],
         status: 'wait'
       }));
     } else {
@@ -86,17 +87,14 @@ class QnPage extends React.Component {
       this.props.setHighScore(score);
       await this.timeout(2000);
       this.props.changePage(3);
+      this.props.initialiseProfiles()
     }
   };
 
   checkLess = async () => {
-    let newProfile = this.getProfile('dont')
-    let { profiles, score } = this.state;
-    profiles[score + 1].showAns = "animate";
-    this.setState({
-      profiles: profiles
-    });
-    await this.timeout(1500);
+    let { score } = this.state;
+    const { profiles, getProfileFromFirebase} = this.props
+    getProfileFromFirebase()
     if (profiles[score + 1].followers <= profiles[score].followers) {
       this.setState({
         status: 'correct'
@@ -105,7 +103,6 @@ class QnPage extends React.Component {
       this.setState((prevState) => ({
         x: prevState.x - 100,
         score: prevState.score + 1,
-        profiles: [...prevState.profiles, newProfile],
         status: 'wait'
       }));
     } else {
@@ -115,11 +112,13 @@ class QnPage extends React.Component {
       this.props.setHighScore(score);
       await this.timeout(2000);
       this.props.changePage(3);
+      this.props.initialiseProfiles()
     }
   };
 
   render() {
-    const {profiles, x, status, score, highscore} = this.state
+    const {x, status, score, highscore} = this.state
+    const { profiles} = this.props
     return(
       <div className='QnPage'>
         <Carousel profiles={profiles} x={x} checkMore={this.checkMore} checkLess={this.checkLess} />
@@ -131,4 +130,13 @@ class QnPage extends React.Component {
   }
 }
 
-export default QnPage;
+const mapStateToProps = createStructuredSelector({
+  profiles: selectProfiles,
+})
+
+const mapDispatchToProps = dispatch => ({
+  getProfileFromFirebase: () => dispatch(getProfileFromFirebase()),
+  initialiseProfiles: () => dispatch(initialiseProfiles())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(QnPage);

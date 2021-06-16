@@ -4,6 +4,9 @@ import QnPage from './pages/QnPage';
 import ResultsPage from './pages/ResultsPage';
 import './App.css';
 
+import { connect } from 'react-redux'
+import {initialiseProfiles} from './redux/questions/questions.actions'
+
 class App extends React.Component {
   constructor() {
     super();
@@ -12,6 +15,10 @@ class App extends React.Component {
       score: 0,
       highscore: 0,
     }
+  }
+
+  componentDidMount() {
+    this.props.initialiseProfiles()
   }
 
   changePage = (page) => {
@@ -55,6 +62,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  initialiseProfiles: () => dispatch(initialiseProfiles())
+})
+
+export default connect(null, mapDispatchToProps)(App);
 
       
