@@ -8,6 +8,12 @@ import { faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
 import {updateLeaderboard} from '../firebase/firebase.utils'
 
+import { connect } from 'react-redux';
+import { changePage } from '../redux/details/details.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectHighscore, selectScore } from '../redux/details/details.selectors';
+import { resetScore } from '../redux/details/details.actions';
+
 class ResultsPage extends React.Component {
     constructor(props) {
         super(props);
@@ -68,7 +74,7 @@ class ResultsPage extends React.Component {
     }
 
     render() {    
-    const {score, highscore, changePage} = this.props
+    const {score, highscore, changePage, resetScore} = this.props
     const { num, userName, didSubmit, clickedSubmit, showLeaderboard} = this.state
     return (
           <div className = {`result-background p${num}`} >
@@ -79,7 +85,10 @@ class ResultsPage extends React.Component {
             <h1 className='score'>{score}</h1>
             <h1 className='highscore-title'>Your HighScore: {highscore}</h1>
                 <button className='my-button' 
-                    onClick= {() => changePage(2)}>
+                    onClick= {() => {
+                        changePage(2);
+                        resetScore()
+                    }}>
                     Try Again
                 </button>
                 {
@@ -113,6 +122,16 @@ class ResultsPage extends React.Component {
     
 }
 
-export default ResultsPage;
+const mapStateToProps = createStructuredSelector({
+    score: selectScore,
+    highscore: selectHighscore,
+})
+
+const mapDispatchToProps = dispatch => ({
+    changePage: (page) => dispatch(changePage(page)),
+    resetScore: () => dispatch(resetScore())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
 
 
