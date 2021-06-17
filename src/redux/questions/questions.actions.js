@@ -1,3 +1,4 @@
+
 import QuestionsActionTypes from './questions.types'
 
 export const initialiseProfiles = () => ({
@@ -7,3 +8,4 @@ export const initialiseProfiles = () => ({
 export const getProfileFromFirebase = () => ({
     type: QuestionsActionTypes.GET_PROFILE
 })
+
