@@ -1,10 +1,12 @@
 
 import DetailsActionTypes from "./details.types"
+import { setBgNumber } from "./details.utils"
 
 const INITIAL_STATE = {
     page: 1,
     score: 0,
-    highscore: 0
+    highscore: 0,
+    bgNumber: 0
 }
 
 const detailsReducer = (state=INITIAL_STATE, action) => {
@@ -24,7 +26,8 @@ const detailsReducer = (state=INITIAL_STATE, action) => {
         case DetailsActionTypes.SET_HIGHSCORE:
             return {
                 ...state,
-                highscore: state.score > state.highscore ? state.score : state.highscore
+                highscore: state.score > state.highscore ? state.score : state.highscore,
+                bgNumber: setBgNumber(state.score, state.highscore)
             }
 
         case DetailsActionTypes.RESET_SCORE:

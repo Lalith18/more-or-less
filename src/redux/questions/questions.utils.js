@@ -19,7 +19,11 @@ export const addNewProfile = (state) => {
         storage.ref().child(`${num}.jpg`).getDownloadURL().then(url => profile.photo = url )
         profiles.push(profile)
           })
-        return {done, profiles}  
+        return {
+          ...state,
+          profiles: profiles,
+          done: done
+        }  
     }
 }
 
@@ -39,6 +43,8 @@ export const getInitialProfiles = () => {
       })
     )
   return {
+    x: 0,
+    status: 'wait',
     profiles: profiles,
     done: done
   }

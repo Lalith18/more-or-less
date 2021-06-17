@@ -5,80 +5,53 @@ import Indicator from '../components/Indicator';
 import Scores from '../components/Scores';
 
 import { connect} from 'react-redux'
-import { getProfileFromFirebase, initialiseProfiles} from '../redux/questions/questions.actions'
+import { getProfileFromFirebase, initialiseProfiles, nextQuestion, showAns} from '../redux/questions/questions.actions'
 import { createStructuredSelector } from 'reselect';
-import { selectProfiles } from '../redux/questions/questions.selectors'
-import {changePage} from '../redux/details/details.actions'
+import { selectProfiles, selectStatus, selectX } from '../redux/questions/questions.selectors'
 import { selectScore, selectHighscore } from '../redux/details/details.selectors';
-import { setScore, setHighscore } from '../redux/details/details.actions';
+import { setScore, setHighscore, changePage } from '../redux/details/details.actions';
 
 class QnPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      x: 0,
-      crct: true,
-      status: 'wait',
-    }
-  }
-
   timeout = (delay) => {
     return new Promise((res) => setTimeout(res, delay));
   };
 
   checkMore = async () => {
-    const {score, profiles, setHighscore, setScore, getProfileFromFirebase} = this.props;
+    const {score, profiles, setHighscore, setScore, getProfileFromFirebase, changePage, initialiseProfiles, nextQuestion, showAns} = this.props;
     getProfileFromFirebase()
-    //await this.timeout(1500);
     if (profiles[score + 1].followers >= profiles[score].followers) {
-      this.setState({
-        status: 'correct'
-      });
+      showAns('correct')
       await this.timeout(2000);
       setScore()
-      this.setState((prevState) => ({
-        x: prevState.x - 100,
-        status: 'wait'
-      }));
+      nextQuestion()
     } else {
-      this.setState({
-        status: 'wrong'
-      });
+      showAns('wrong')
       setHighscore()
       await this.timeout(2000);
-      this.props.changePage(3);
-      this.props.initialiseProfiles()
+      changePage(3);
+      initialiseProfiles()
     }
   };
 
   checkLess = async () => {
-    const { score, profiles, setScore, setHighscore, getProfileFromFirebase} = this.props
+    const { score, profiles, setScore, setHighscore, getProfileFromFirebase, changePage, initialiseProfiles, showAns, nextQuestion} = this.props
     getProfileFromFirebase()
-    //await this.timeout(1500);
     if (profiles[score + 1].followers <= profiles[score].followers) {
-      this.setState({
-        status: 'correct'
-      });
+      showAns('correct')
       await this.timeout(2000);
       setScore()
-      this.setState((prevState) => ({
-        x: prevState.x - 100,
-        status: 'wait'
-      }));
+      nextQuestion()
     } else {
-      this.setState({
-        status: 'wrong'
-      });
+      showAns('wrong')
       setHighscore()
       await this.timeout(2000);
-      this.props.changePage(3);
-      this.props.initialiseProfiles()
+      changePage(3);
+      initialiseProfiles()
     }
   };
 
   render() {
-    const {x, status} = this.state
-    const { score, highscore, profiles} = this.props
+    const {x, status, score, highscore, profiles} = this.props
     return(
       <div className='QnPage'>
         <Carousel profiles={profiles} x={x} checkMore={this.checkMore} checkLess={this.checkLess} />
@@ -93,7 +66,9 @@ class QnPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   profiles: selectProfiles,
   score: selectScore,
-  highscore: selectHighscore
+  highscore: selectHighscore,
+  status: selectStatus,
+  x: selectX
 
 })
 
@@ -102,7 +77,9 @@ const mapDispatchToProps = dispatch => ({
   initialiseProfiles: () => dispatch(initialiseProfiles()),
   changePage: (page) => dispatch(changePage(page)),
   setScore: () => dispatch(setScore()),
-  setHighscore: () => dispatch(setHighscore())
+  setHighscore: () => dispatch(setHighscore()),
+  nextQuestion: () => dispatch(nextQuestion()),
+  showAns: (status) => dispatch(showAns(status))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(QnPage);

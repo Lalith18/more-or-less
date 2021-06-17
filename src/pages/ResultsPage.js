@@ -9,77 +9,35 @@ import { faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import {updateLeaderboard} from '../firebase/firebase.utils'
 
 import { connect } from 'react-redux';
-import { changePage } from '../redux/details/details.actions';
+import { changePage, resetScore } from '../redux/details/details.actions';
 import { createStructuredSelector } from 'reselect';
-import { selectHighscore, selectScore } from '../redux/details/details.selectors';
-import { resetScore } from '../redux/details/details.actions';
+import { selectHighscore, selectScore, selectBgNumber } from '../redux/details/details.selectors';
+import { toggleShowLeaderboard, updateName, clickedSubmit, submitResults } from '../redux/results/results.actions';
+import { selectShowLeaderboard, selectUsername, selectSubmit1, selectSubmit2} from '../redux/results/results.selectors';
 
 class ResultsPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            num: this.getNum(),
-            didSubmit : false,
-            clickedSubmit: false,
-            showLeaderboard: false,
-            userName: ''
-        }
-    }
-
-    getNum = () => {
-        const {score, highscore} = this.props
-        let num = Math.floor(Math.random() * 2)
-        if ( score === highscore && score > 3) {
-            num = 4 + num
-        } else if (score > 3) {
-            num = 2 + num
-        }
-        return num
-    }
-
-    onClickSubmit = () => {
-        this.setState({
-            clickedSubmit: true
-        })
-    }
-
     onSubmit = async () => {
-        const {userName } = this.state
-        const {score } = this.props
+        const {userName, score } = this.props
         if (!userName) {
             return
         }
-        this.setState({
-            didSubmit: true
-        })
+        this.props.submitResults()
         await updateLeaderboard(userName, score);
         console.log(userName, score);
     }
 
     handleChange = event => {
         const {value} = event.target;
-        this.setState({ userName: value})
+        this.props.updateName(value)
     }
 
-    showLeaderbord = () => {
-        this.setState({
-            showLeaderboard: true
-        })
-    }
-
-    closeLeaderboard = () => {
-        this.setState({
-            showLeaderboard: false
-        })
-    }
 
     render() {    
-    const {score, highscore, changePage, resetScore} = this.props
-    const { num, userName, didSubmit, clickedSubmit, showLeaderboard} = this.state
+    const {bgNumber, score, highscore, changePage, resetScore, showLeaderboard, toggleShowLeaderboard, userName, submit1, submit2, clickedSubmit} = this.props
     return (
-          <div className = {`result-background p${num}`} >
+          <div className = {`result-background p${bgNumber}`} >
           {
-              showLeaderboard ? <Leaderboard closeLeaderboard={this.closeLeaderboard}/>
+              showLeaderboard ? <Leaderboard closeLeaderboard={() => toggleShowLeaderboard()}/>
                : <div>
             <h1 className='result-title'>You scored: </h1>
             <h1 className='score'>{score}</h1>
@@ -92,11 +50,11 @@ class ResultsPage extends React.Component {
                     Try Again
                 </button>
                 {
-                    didSubmit ? <button className='my-button secondary leaderboard-button' onClick={this.showLeaderbord} >Leaderboard</button>
-                             : clickedSubmit ? <FormInput userName={userName} onSubmit={this.onSubmit} handleChange={this.handleChange} />
+                    submit2 ? <button className='my-button secondary leaderboard-button' onClick={() => toggleShowLeaderboard()} >Leaderboard</button>
+                             : submit1 ? <FormInput userName={userName} onSubmit={this.onSubmit} handleChange={this.handleChange} />
                                             :   <div>
-                                                    <button className='my-button secondary'  onClick={this.showLeaderbord}>Leaderboard</button>
-                                                    <button className='my-button secondary' onClick={this.onClickSubmit} >Submit</button>
+                                                    <button className='my-button secondary'  onClick={() => toggleShowLeaderboard()}>Leaderboard</button>
+                                                    <button className='my-button secondary' onClick={() => clickedSubmit()} >Submit</button>
                                                 </div>
                 }
             <div className='footer'>
@@ -125,11 +83,20 @@ class ResultsPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
     score: selectScore,
     highscore: selectHighscore,
+    bgNumber: selectBgNumber,
+    showLeaderboard: selectShowLeaderboard,
+    userName: selectUsername,
+    submit1: selectSubmit1,
+    submit2: selectSubmit2,
 })
 
 const mapDispatchToProps = dispatch => ({
     changePage: (page) => dispatch(changePage(page)),
-    resetScore: () => dispatch(resetScore())
+    resetScore: () => dispatch(resetScore()),
+    toggleShowLeaderboard: () => dispatch(toggleShowLeaderboard()),
+    updateName: name => dispatch(updateName(name)),
+    clickedSubmit: () => dispatch(clickedSubmit()),
+    submitResults: () => dispatch(submitResults())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
