@@ -11,7 +11,7 @@ import {updateLeaderboard} from '../firebase/firebase.utils'
 import { connect } from 'react-redux';
 import { changePage, resetScore } from '../redux/details/details.actions';
 import { createStructuredSelector } from 'reselect';
-import { selectHighscore, selectScore, selectBgNumber } from '../redux/details/details.selectors';
+import { selectHighscore, selectScore, selectBg } from '../redux/details/details.selectors';
 import { toggleShowLeaderboard, updateName, clickedSubmit, submitResults } from '../redux/results/results.actions';
 import { selectShowLeaderboard, selectUsername, selectSubmit1, selectSubmit2} from '../redux/results/results.selectors';
 
@@ -33,9 +33,9 @@ class ResultsPage extends React.Component {
 
 
     render() {    
-    const {bgNumber, score, highscore, changePage, resetScore, showLeaderboard, toggleShowLeaderboard, userName, submit1, submit2, clickedSubmit} = this.props
+    const {bg, score, highscore, changePage, resetScore, showLeaderboard, toggleShowLeaderboard, userName, submit1, submit2, clickedSubmit} = this.props
     return (
-          <div className = {`result-background p${bgNumber}`} >
+          <div className ='result-background' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bg})` }} >
           {
               showLeaderboard ? <Leaderboard closeLeaderboard={() => toggleShowLeaderboard()}/>
                : <div>
@@ -77,13 +77,12 @@ class ResultsPage extends React.Component {
         </div>
     )
     }
-    
 }
 
 const mapStateToProps = createStructuredSelector({
     score: selectScore,
     highscore: selectHighscore,
-    bgNumber: selectBgNumber,
+    bg: selectBg,
     showLeaderboard: selectShowLeaderboard,
     userName: selectUsername,
     submit1: selectSubmit1,

@@ -1,18 +1,13 @@
 
 import QuestionsActionTypes from "./questions.types"
-import { addNewProfile, getInitialProfiles } from "./questions.utils"
+import { addNewProfile, getInitialProfiles} from "./questions.utils"
 
-const INITIAL_STATE = {
-    profiles: [],
-    done: [],
-    x: 0,
-    status: 'wait'
-}
+const INITIAL_STATE = getInitialProfiles()
 
 const questionsReducer = (state=INITIAL_STATE, action) => {
     switch(action.type) {
         case QuestionsActionTypes.INITIALISE_PROFILES:
-            return getInitialProfiles(state)
+            return getInitialProfiles()
 
         case QuestionsActionTypes.GET_PROFILE:
             return addNewProfile(state)
@@ -23,7 +18,7 @@ const questionsReducer = (state=INITIAL_STATE, action) => {
                 x: state.x - 100,
                 status: 'wait'
             }
-
+        
         case QuestionsActionTypes.SHOW_ANS:
             return {
                 ...state,

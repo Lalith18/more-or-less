@@ -7,11 +7,6 @@ export const selectProfiles = createSelector(
     questions => questions.profiles
 )
 
-export const selectDone = createSelector(
-    [selectQuestions],
-    questions => questions.done
-)
-
 export const selectStatus = createSelector(
     [selectQuestions],
     questions => questions.status

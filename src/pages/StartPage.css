@@ -1,7 +1,7 @@
 .background {
     height: 100%;
     width: 100%;
-    background: linear-gradient( 45deg, rgba(255,196,66,0.9), rgb(255,123,0,0.8), rgb(254,85,26,0.8), rgb(250,53,144,0.8), rgb(168,43,193,0.9)), url('https://api.time.com/wp-content/uploads/2019/04/instagram-story-tips-tricks.jpg?quality=85&w=1024&h=628&crop=1');
+    /* background: linear-gradient( 45deg, rgba(255,196,66,0.9), rgb(255,123,0,0.8), rgb(254,85,26,0.8), rgb(250,53,144,0.8), rgb(168,43,193,0.9)), url('https://api.time.com/wp-content/uploads/2019/04/instagram-story-tips-tricks.jpg?quality=85&w=1024&h=628&crop=1'); */
     background-position: center;
     background-size: cover;
     padding-top: 40vh;

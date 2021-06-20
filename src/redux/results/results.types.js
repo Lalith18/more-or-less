@@ -3,8 +3,6 @@ const ResultsActionTypes = {
     SUBMIT_RESULTS: 'SUBMIT_RESULTS',
     CLICKED_SUBMIT: 'CLICKED_SUBMIT',
     UPDATE_NAME: 'UPDATE_NAME',
-    SET_BG_NUMBER: 'SET_BG_NUMBER'
-
 }
 
 export default ResultsActionTypes;

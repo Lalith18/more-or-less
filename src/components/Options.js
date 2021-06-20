@@ -1,6 +1,5 @@
 import './Options.css';
 
-
 const Options = ({prevName, checkMore, checkLess }) => {
     return (
       <div className="options">

@@ -17,7 +17,12 @@ export const selectHighscore = createSelector(
     details => details.highscore
 )
 
-export const selectBgNumber = createSelector(
+export const selectBg = createSelector(
     [selectDetails],
-    details => details.bgNumber
+    details => details.bg
+)
+
+export const selectStartBg = createSelector(
+    [selectDetails],
+    details => details.startBg
 )

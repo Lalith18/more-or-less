@@ -16,3 +16,13 @@ export const resetScore = () => ({
 export const setHighscore = () => ({
     type: DetailsActionTypes.SET_HIGHSCORE
 })
+
+export const setBg = bg => ({
+    type: DetailsActionTypes.SET_BG,
+    payload: bg
+})
+
+export const setStartBg = bg => ({
+    type: DetailsActionTypes.SET_START_BG,
+    payload: bg
+})

@@ -3,17 +3,18 @@ import StartPage from './pages/StartPage';
 import QnPage from './pages/QnPage';
 import ResultsPage from './pages/ResultsPage';
 import './App.css';
+import { storage } from './firebase/firebase.utils';
 
 import { connect } from 'react-redux'
-import {initialiseProfiles} from './redux/questions/questions.actions'
 import { createStructuredSelector} from 'reselect'
+import { setStartBg } from './redux/details/details.actions';
 import { selectPage } from './redux/details/details.selectors';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.initialiseProfiles()
+    storage.ref().child(`background/start.jpg`).getDownloadURL().then(url => this.props.setStartBg(url))
   }
-  
+
   render() {
     const {page} = this.props
     return (
@@ -33,7 +34,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  initialiseProfiles: () => dispatch(initialiseProfiles())
+  setStartBg: (bg) => dispatch(setStartBg(bg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
