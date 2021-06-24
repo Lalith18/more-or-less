@@ -29,6 +29,8 @@ const resultsReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 submit2: true
             }
+        case ResultsActionTypes.RESULT_RESULTS_BUTTONS:
+            return INITIAL_STATE
         default:
             return {
                 ...state,

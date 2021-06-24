@@ -13,7 +13,6 @@
     margin: 0;
     font-size: 1.5vw;
     color: white;
-    margin-top: 0;
 }
 
 @media (max-width: 650px) {
@@ -24,9 +23,6 @@
     }
 
     .qn-words {
-        margin: 0;
         font-size: 3.5vw;
-        color: white;
-        margin-top: 0;
     }
 }

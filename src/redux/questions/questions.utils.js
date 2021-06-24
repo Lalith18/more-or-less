@@ -1,10 +1,10 @@
 import { firestore, storage } from '../../firebase/firebase.utils'
 
 export const addNewProfile = (state) => {
-    let num = Math.floor(Math.random() * 10) 
+    let num = Math.floor(Math.random() * 56) 
     let done = state.done
     let profiles = state.profiles.map((content, i) => i === state.profiles.length-2 ? {...content, showAns: 'animate'} : content)
-    if (done.length === 10) {
+    if (done.length === 56) {
       done = []
     }
     if (done.includes(num))  {
@@ -28,7 +28,7 @@ export const addNewProfile = (state) => {
 export const getInitialProfiles = () => {
   let done = []
   while (done.length !== 3) {
-    let num = Math.floor(Math.random() * 10) 
+    let num = Math.floor(Math.random() * 56) 
     if (!done.includes(num)) {
       done.push(num)
     }

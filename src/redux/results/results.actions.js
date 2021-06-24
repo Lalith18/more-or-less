@@ -17,3 +17,7 @@ export const updateName = name => ({
 export const submitResults = () => ({
     type: ResultsActionTypes.SUBMIT_RESULTS
 })
+
+export const resetResultsButtons = () => ({
+    type: ResultsActionTypes.RESULT_RESULTS_BUTTONS
+})

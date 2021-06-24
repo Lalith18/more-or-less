@@ -6,3 +6,21 @@
     position: relative;
     background-color: black;
 }
+
+.disclaimer {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    margin: 0;
+    font-size: 1.1vw;
+    font-weight: lighter;
+    opacity: 0.6;
+    color:white;
+}
+
+@media (max-width: 650px) {
+    .disclaimer {
+        font-size: 2.5vw;
+        font-weight: lighter;
+    }
+}

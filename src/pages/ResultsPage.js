@@ -3,7 +3,7 @@ import './ResultsPage.css';
 import FormInput from '../components/FormInput'
 import Leaderboard from '../components/Leaderboard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope} from '@fortawesome/free-solid-svg-icons'
 
 import {updateLeaderboard} from '../firebase/firebase.utils'
@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { changePage, resetScore } from '../redux/details/details.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectHighscore, selectScore, selectBg } from '../redux/details/details.selectors';
-import { toggleShowLeaderboard, updateName, clickedSubmit, submitResults } from '../redux/results/results.actions';
+import { toggleShowLeaderboard, updateName, clickedSubmit, submitResults, resetResultsButtons } from '../redux/results/results.actions';
 import { selectShowLeaderboard, selectUsername, selectSubmit1, selectSubmit2} from '../redux/results/results.selectors';
 
 class ResultsPage extends React.Component {
@@ -33,7 +33,7 @@ class ResultsPage extends React.Component {
 
 
     render() {    
-    const {bg, score, highscore, changePage, resetScore, showLeaderboard, toggleShowLeaderboard, userName, submit1, submit2, clickedSubmit} = this.props
+    const {bg, score, highscore, changePage, resetScore, showLeaderboard, toggleShowLeaderboard, userName, submit1, submit2, clickedSubmit, resetResultsButtons} = this.props
     return (
           <div className ='result-background' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bg})` }} >
           {
@@ -46,6 +46,7 @@ class ResultsPage extends React.Component {
                     onClick= {() => {
                         changePage(2);
                         resetScore()
+                        resetResultsButtons()
                     }}>
                     Try Again
                 </button>
@@ -58,18 +59,13 @@ class ResultsPage extends React.Component {
                                                 </div>
                 }
             <div className='footer'>
-                <div className='developer'>
+                <div>
                     <h1 className='role'>Web Developer</h1>
                     <span className='name'>Lalith</span>
                     <a href="https://www.instagram.com/lalith_leftie/" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faInstagram} /></button></a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leftoverdeveloper1@gmail.com" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faEnvelope} /></button></a>
                     <a href="https://github.com/Lalith18/more-or-less" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faGithub} /></button></a>
-                </div>
-                <div className='designer'>
-                    <h1 className='role'>UI/UX Designer</h1>
-                    <span className='name'>Ramasamy</span>
-                    <a href="https://www.instagram.com/lalith_leftie/" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faInstagram} /></button></a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leftoverdeveloper1@gmail.com" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faEnvelope} /></button></a>
+                    <a href="https://www.linkedin.com/in/lalith-k-25a7a3213/" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faLinkedin} /></button></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leftoverdeveloper1@gmail.com" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button mail"><FontAwesomeIcon icon={faEnvelope} /></button></a>
                 </div>
             </div>
             </div>
@@ -95,7 +91,8 @@ const mapDispatchToProps = dispatch => ({
     toggleShowLeaderboard: () => dispatch(toggleShowLeaderboard()),
     updateName: name => dispatch(updateName(name)),
     clickedSubmit: () => dispatch(clickedSubmit()),
-    submitResults: () => dispatch(submitResults())
+    submitResults: () => dispatch(submitResults()),
+    resetResultsButtons: () => dispatch(resetResultsButtons())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);

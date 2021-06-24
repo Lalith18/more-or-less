@@ -19,9 +19,9 @@ class QnPage extends React.Component {
 
   getBg = (score, highscore) => {
     let num = Math.floor(Math.random() * 4)
-    if ( score > highscore && score > 3) {
+    if ( score > highscore && score > 5) {
         num = Math.floor(Math.random() * 3) + 4
-    } else if (score > 3) {
+    } else if (score > 5) {
         num = Math.floor(Math.random() * 3) + 7
     }
     storage.ref().child(`background/${num}.jpg`).getDownloadURL().then(url => this.props.setBg(url))
@@ -73,6 +73,7 @@ class QnPage extends React.Component {
         <Scores type='Highscore' value={highscore} />
         <Scores type='Score' value={score} />
         <Indicator status={status} />
+        <h2 className='disclaimer'>*As on 24 June 2021</h2>
       </div>
     )
   }
