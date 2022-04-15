@@ -20,6 +20,7 @@ body {
 .my-button:hover {
   background: white;
   color: black;
+  cursor: pointer;
 }
 
 .social-button {
@@ -60,7 +61,7 @@ body {
     border-radius: 5px;
     padding: 1px 2px 0;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 1px 2px;
   }
 

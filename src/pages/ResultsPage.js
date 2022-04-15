@@ -39,7 +39,7 @@ class ResultsPage extends React.Component {
           {
               showLeaderboard ? <Leaderboard closeLeaderboard={() => toggleShowLeaderboard()}/>
                : <div>
-            <h1 className='result-title'>You scored: </h1>
+            <h1 className='result-title'>You Scored: </h1>
             <h1 className='score'>{score}</h1>
             <h1 className='highscore-title'>Your HighScore: {highscore}</h1>
                 <button className='my-button' 
@@ -62,10 +62,17 @@ class ResultsPage extends React.Component {
                 <div>
                     <h1 className='role'>Web Developer</h1>
                     <span className='name'>Lalith</span>
-                    <a href="https://www.instagram.com/lalith_leftie/" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faInstagram} /></button></a>
-                    <a href="https://github.com/Lalith18/more-or-less" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faGithub} /></button></a>
-                    <a href="https://www.linkedin.com/in/lalith-k-25a7a3213/" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button"><FontAwesomeIcon icon={faLinkedin} /></button></a>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leftoverdeveloper1@gmail.com" rel="noreferrer" target="_blank"><button type="button" class="my-button social-button mail"><FontAwesomeIcon icon={faEnvelope} /></button></a>
+                    <a href="https://www.instagram.com/lalith_leftie/" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button"><FontAwesomeIcon icon={faInstagram} /></button></a>
+                    <a href="https://github.com/Lalith18/more-or-less" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button"><FontAwesomeIcon icon={faGithub} /></button></a>
+                    <a href="https://www.linkedin.com/in/lalith-k-25a7a3213/" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button"><FontAwesomeIcon icon={faLinkedin} /></button></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lalithleftie@gmail.com" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button mail"><FontAwesomeIcon icon={faEnvelope} /></button></a>
+                </div>
+                <div>
+                    <h1 className='role'>Product Designer</h1>
+                    <span className='name'>Ramasamy</span>
+                    <a href="https://www.instagram.com/ramasamy27rm/" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button"><FontAwesomeIcon icon={faInstagram} /></button></a>
+                    <a href="https://www.linkedin.com/in/ramasamy-rm-a0a1211b0/" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button"><FontAwesomeIcon icon={faLinkedin} /></button></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ramasamy19084@mech.ssn.edu.in" rel="noreferrer" target="_blank"><button type="button" className="my-button social-button mail"><FontAwesomeIcon icon={faEnvelope} /></button></a>
                 </div>
             </div>
             </div>
